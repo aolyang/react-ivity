@@ -1,10 +1,6 @@
 import { effect, reactive, isReactive, isRef, stop } from "@vue/reactivity";
 import { useEffect, useState } from "react";
 
-const globalState = reactive({
-  count: 0
-})
-
 function traverse(value, seen = new Set()) {
   if (!(typeof value === "object") || seen.has(value))
     return value
@@ -40,6 +36,10 @@ const watch = (source, fn, { deep = true, lazy } = {}) => {
     }
   })
 }
+
+const globalState = reactive({
+  count: 0
+})
 
 export function useCount(num) {
   const [count, setCount] = useState(num)
